@@ -10,22 +10,22 @@ composer require ognistyi/atompark
  
  
  ---
- **Require AtomParkServiceProvider**
+ **Register AtomParkServiceProvider**
  
- Lumen
- In your bootstrap/app.php add this line:
+ Lumen:
+ In your bootstrap/app.php add this:
  
  ```
- $app->register(Ognistyi\AtomPark\ServiceProvider\AtomParkServiceProvider::class);
- ```
+ // registering facade
+ $app->withFacades(true, [
+     \Ognistyi\AtomPark\Facade\AtomParkFacade::class => 'AtomPark',
+ ]); 
  
- Laravel
- Open config/app.php and find the providers key:
- ```
-    'providers' => array(
-         // ...
-         Ognistyi\AtomPark\ServiceProvider\AtomParkServiceProvider::class
-     )
+ //...
+ 
+ // registering service
+ $app->register(\Ognistyi\AtomPark\ServiceProvider\AtomParkServiceProvider::class);
+ 
  ```
  
  **Publish assets:**
