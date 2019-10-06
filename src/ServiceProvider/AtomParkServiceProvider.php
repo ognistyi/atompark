@@ -22,8 +22,7 @@ class AtomParkServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->publishes(
-            [__DIR__ . '/../config/atom_park.php' => config_path('atom_park.php')],
-            'atom-park-config'
+            [__DIR__ . '/../config/atom_park.php' => config_path('atom_park.php')]
         );
     }
 
