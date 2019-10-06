@@ -9,4 +9,4 @@ namespace Ognistyi\AtomPark\Exception;
  *
  * @package Ognistyi\AtomPark\Exception
  */
-class AtomParkException extends \Exception {}
+class AtomParkException extends AtomParkBaseException {}

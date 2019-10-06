@@ -3,10 +3,10 @@
 namespace Ognistyi\AtomPark\Exception;
 
 /**
- * Gateway error response
+ * Package exception
  *
  * Class AtomPackResponseException
  *
  * @package Ognistyi\AtomPark\Exception
  */
-class AtomParkBadResponseException extends AtomParkBaseException {}
+class AtomParkBaseException extends \Exception {}
