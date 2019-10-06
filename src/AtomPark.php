@@ -4,8 +4,8 @@ namespace Ognistyi\AtomPark;
 
 
 use Ognistyi\AtomPark\Dictionary\SendErrorCode;
-use Ognistyi\AtomPark\Exception\AtomPackBadResponseException;
-use Ognistyi\AtomPark\Exception\AtomPackException;
+use Ognistyi\AtomPark\Exception\AtomParkBadResponseException;
+use Ognistyi\AtomPark\Exception\AtomParkException;
 
 class AtomPark
 {
@@ -54,8 +54,8 @@ class AtomPark
      * @param $message
      * @param null|string $messageId
      * @return
-     * @throws AtomPackBadResponseException
-     * @throws AtomPackException
+     * @throws AtomParkBadResponseException
+     * @throws AtomParkException
      */
     public function sendSMS($phone, $message, $messageId = null)
     {
@@ -105,7 +105,7 @@ class AtomPark
             $curl_errno = curl_errno($curl);
             $curl_err_msg = curl_error($curl);
 
-            throw new AtomPackException(sprintf('Cannot send SMS code. Curl error: #[%s] %s', $curl_errno, $curl_err_msg));
+            throw new AtomParkException(sprintf('Cannot send SMS code. Curl error: #[%s] %s', $curl_errno, $curl_err_msg));
         }
 
         curl_close($curl);
@@ -118,7 +118,7 @@ class AtomPark
 
     /**
      * @param string $response
-     * @throws AtomPackBadResponseException
+     * @throws AtomParkBadResponseException
      */
     protected function check_response($response)
     {
@@ -128,7 +128,7 @@ class AtomPark
 
         if ($errorCode->getErrorCode() < 0) {
 
-            throw new AtomPackBadResponseException(
+            throw new AtomParkBadResponseException(
                 sprintf('Gateway error #%s: "%s"', $errorCode->getErrorCode(), $errorCode->getErrorText())
             );
 
