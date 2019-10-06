@@ -1,9 +1,10 @@
 <?php
 
-namespace GoogleMaps\ServiceProvider;
+namespace Ognistyi\AtomPark\ServiceProvider;
 
+use Illuminate\Foundation\Application as LaravelApplication;
 use Illuminate\Support\ServiceProvider;
-use Ognistyi\AtomPark\AtomPark;
+use Laravel\Lumen\Application as LumenApplication;
 
 class AtomParkServiceProvider extends ServiceProvider
 {
