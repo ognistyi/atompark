@@ -21,9 +21,14 @@ class AtomParkServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        $configPath = __DIR__ . "/../../config/atom_park.php";
+
         $this->publishes(
-            [__DIR__ . '/../config/atom_park.php' => config_path('atom_park.php')]
+            [$configPath => $this->configPath("atom_park.php")],
+            "config"
         );
+
+        $this->mergeConfigFrom($configPath, "atom_park");
     }
 
     /**
@@ -49,5 +54,18 @@ class AtomParkServiceProvider extends ServiceProvider
         return [
             AtomParkApi::class
         ];
+    }
+
+    protected function configPath(string $path = "") : string
+    {
+        if (function_exists("config_path")) {
+            return config_path($path);
+        }
+        $pathParts = [
+            app()->basePath(),
+            "config",
+            trim($path, "/"),
+        ];
+        return implode("/", $pathParts);
     }
 }
