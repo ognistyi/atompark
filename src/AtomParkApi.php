@@ -7,7 +7,7 @@ use Ognistyi\AtomPark\Dictionary\SendErrorCode;
 use Ognistyi\AtomPark\Exception\AtomParkBadResponseException;
 use Ognistyi\AtomPark\Exception\AtomParkException;
 
-class AtomPark
+class AtomParkApi
 {
     /**
      * @var string
@@ -57,7 +57,7 @@ class AtomPark
      * @throws AtomParkBadResponseException
      * @throws AtomParkException
      */
-    public function sendSMS($phone, $message, $messageId = null)
+    public function send($phone, $message, $messageId = null)
     {
         $xmlRequest = /** @lang XML */
             '<?xml version="1.0" encoding="UTF-8"?>

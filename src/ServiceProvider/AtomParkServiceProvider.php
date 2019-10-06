@@ -3,7 +3,7 @@
 namespace Ognistyi\AtomPark\ServiceProvider;
 
 use Illuminate\Support\ServiceProvider;
-use Ognistyi\AtomPark\AtomPark;
+use Ognistyi\AtomPark\AtomParkApi;
 
 class AtomParkServiceProvider extends ServiceProvider
 {
@@ -33,9 +33,10 @@ class AtomParkServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bind('AtomPark', function () {
-            return new AtomPark();
+        $this->app->singleton(AtomParkApi::class, function ($app) {
+            return new AtomParkApi(config('atom_park'));
         });
+
     }
 
     /**
@@ -45,6 +46,8 @@ class AtomParkServiceProvider extends ServiceProvider
      */
     public function provides()
     {
-        return array('AtomPark');
+        return [
+            AtomParkApi::class
+        ];
     }
 }
