@@ -2,9 +2,8 @@
 
 namespace Ognistyi\AtomPark\ServiceProvider;
 
-use Illuminate\Foundation\Application as LaravelApplication;
 use Illuminate\Support\ServiceProvider;
-use Laravel\Lumen\Application as LumenApplication;
+use Ognistyi\AtomPark\AtomPark;
 
 class AtomParkServiceProvider extends ServiceProvider
 {
@@ -22,14 +21,10 @@ class AtomParkServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        if ($this->app instanceof LaravelApplication && $this->app->runningInConsole()) {
-            $this->publishes(
-                [__DIR__ . '/../config/atom_park.php' => config_path('atom_park.php')],
-                'atom-park-config'
-            );
-        } elseif ($this->app instanceof LumenApplication) {
-            $this->app->configure('AtomPark');
-        }
+        $this->publishes(
+            [__DIR__ . '/../config/atom_park.php' => config_path('atom_park.php')],
+            'atom-park-config'
+        );
     }
 
     /**
