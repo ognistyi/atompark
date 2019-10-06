@@ -12,6 +12,11 @@ class AtomParkApi
     /**
      * @var string
      */
+    protected $endpoint;
+
+    /**
+     * @var string
+     */
     protected $login;
 
     /**
@@ -43,6 +48,13 @@ class AtomParkApi
     public function getLastRequest()
     {
         return $this->lastRequest;
+    }
+
+    public function __construct($login, $password, $endpoint)
+    {
+        $this->login = $login;
+        $this->password = $password;
+        $this->endpoint = $endpoint;
     }
 
     /**
@@ -88,7 +100,7 @@ class AtomParkApi
 
         $curl = curl_init();
         $curl_options = array(
-            CURLOPT_URL => 'http://api.atompark.com/members/sms/xml.php',
+            CURLOPT_URL => $this->endpoint,
             CURLOPT_FOLLOWLOCATION => false,
             CURLOPT_POST => true,
             CURLOPT_HEADER => false,
@@ -124,7 +136,9 @@ class AtomParkApi
     {
         $xmlResult = simplexml_load_string($response);
 
-        $errorCode = SendErrorCode::make($xmlResult->status);
+        $responseStatus = (int) $xmlResult->status;
+
+        $errorCode = SendErrorCode::make($responseStatus);
 
         if ($errorCode->getErrorCode() < 0) {
 

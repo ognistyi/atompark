@@ -39,7 +39,7 @@ class AtomParkServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->singleton(AtomParkApi::class, function ($app) {
-            return new AtomParkApi(config('atom_park'));
+            return new AtomParkApi(config('atom_park.login'), config('atom_park.password'), config('atom_park.endpoint'));
         });
 
     }
