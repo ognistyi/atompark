@@ -117,7 +117,7 @@ class AtomParkApi
             $curl_errno = curl_errno($curl);
             $curl_err_msg = curl_error($curl);
 
-            throw new AtomParkException(sprintf('Cannot send SMS code. Curl error: #[%s] %s', $curl_errno, $curl_err_msg));
+            throw new AtomParkException($curl_err_msg, $curl_errno);
         }
 
         curl_close($curl);
