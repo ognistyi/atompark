@@ -142,10 +142,7 @@ class AtomParkApi
 
         if ($errorCode->getErrorCode() < 0) {
 
-            throw new AtomParkBadResponseException(
-                sprintf('Gateway error #%s: "%s"', $errorCode->getErrorCode(), $errorCode->getErrorText())
-            );
-
+            throw new AtomParkBadResponseException($errorCode->getErrorText(), $errorCode->getErrorCode());
         }
 
         // when code > 0 this is count SMS was sent
